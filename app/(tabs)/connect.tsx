@@ -1,3 +1,5 @@
+import Layout from "@/components/layout/Layout";
+import { ThemedText } from "@/components/themed-text";
 import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 
@@ -5,9 +7,11 @@ type Props = {};
 
 const Connect = (props: Props) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Connect</Text>
-    </View>
+    <Layout title="Connect">
+      <View style={styles.container}>
+        <ThemedText type="subtitle">Connect Screen</ThemedText>
+      </View>
+    </Layout>
   );
 };
 
@@ -18,7 +22,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
   },
   text: {
     fontSize: 24,

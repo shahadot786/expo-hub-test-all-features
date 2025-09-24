@@ -3,15 +3,14 @@ import React from "react";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { HapticTab } from "@/components/haptic-tab";
 import { Colors } from "@/constants/theme";
-import { useColorScheme } from "@/hooks/use-color-scheme";
+import useThemeStore from "@/store/themeStore";
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
+  const { isDark } = useThemeStore();
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? "light"].tint,
+        tabBarActiveTintColor: Colors[isDark ? "dark" : "light"].tint,
         headerShown: false,
         tabBarButton: HapticTab,
       }}

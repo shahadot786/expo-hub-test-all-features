@@ -1,13 +1,17 @@
+import Layout from "@/components/layout/Layout";
+import { ThemedText } from "@/components/themed-text";
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 type Props = {};
 
 const Lab = (props: Props) => {
   return (
-    <View style={styles.container}>
-      <Text style={styles.text}>Lab</Text>
-    </View>
+    <Layout title="Lab">
+      <View style={styles.container}>
+        <ThemedText type="subtitle">Lab Screen</ThemedText>
+      </View>
+    </Layout>
   );
 };
 
@@ -18,7 +22,6 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#fff",
   },
   text: {
     fontSize: 24,
