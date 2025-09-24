@@ -1,9 +1,10 @@
-import { Tabs } from "expo-router";
-import React from "react";
-import Ionicons from "@expo/vector-icons/Ionicons";
 import { HapticTab } from "@/components/haptic-tab";
 import { Colors } from "@/constants/theme";
 import useThemeStore from "@/store/themeStore";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Tabs } from "expo-router";
+import React from "react";
+import { Platform } from "react-native";
 
 export default function TabLayout() {
   const { isDark } = useThemeStore();
@@ -13,6 +14,13 @@ export default function TabLayout() {
         tabBarActiveTintColor: Colors[isDark ? "dark" : "light"].tint,
         headerShown: false,
         tabBarButton: HapticTab,
+        tabBarStyle: {
+          ...(Platform.OS === "web"
+            ? {
+                alignItems: "center",
+              }
+            : {}),
+        },
       }}
     >
       <Tabs.Screen

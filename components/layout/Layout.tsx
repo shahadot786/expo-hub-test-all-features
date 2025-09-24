@@ -1,10 +1,10 @@
-import React from "react";
-import { StyleSheet, TouchableOpacity, View } from "react-native";
-import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
-import { ThemedView } from "../themed-view";
-import { ThemedText } from "../themed-text";
-import { Ionicons } from "@expo/vector-icons"; // expo vector icons
 import useThemeStore from "@/store/themeStore";
+import { Ionicons } from "@expo/vector-icons"; // expo vector icons
+import React from "react";
+import { Platform, StyleSheet, TouchableOpacity, View } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { ThemedText } from "../themed-text";
+import { ThemedView } from "../themed-view";
 
 type Props = {
   children: React.ReactNode;
@@ -32,7 +32,12 @@ const Layout = ({
 }: Props) => {
   const { isDark } = useThemeStore();
   return (
-    <ThemedView style={styles.themeContainer}>
+    <ThemedView
+      style={[
+        styles.themeContainer,
+        Platform.OS === "web" && { alignItems: "center" },
+      ]}
+    >
       <SafeAreaProvider>
         <SafeAreaView style={styles.container}>
           {/* Header */}

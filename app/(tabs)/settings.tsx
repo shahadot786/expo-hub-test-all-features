@@ -1,41 +1,41 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
-import React, { useEffect, useState, useRef, useCallback } from "react";
+import React, { useCallback, useEffect, useRef, useState } from "react";
 import {
-  View,
-  Text,
-  StyleSheet,
-  Switch,
-  TouchableOpacity,
-  ScrollView,
-  TextInput,
-  Platform,
-  Image,
+  ActivityIndicator,
   Alert,
   Dimensions,
-  ActivityIndicator,
+  Image,
+  Platform,
   RefreshControl,
+  ScrollView,
+  StyleSheet,
+  Switch,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 // Expo imports
-import * as Device from "expo-device";
-import * as Battery from "expo-battery";
-import * as Application from "expo-application";
-import * as Notifications from "expo-notifications";
-import * as Location from "expo-location";
-import * as ImagePicker from "expo-image-picker";
-import { Camera } from "expo-camera";
-import { Audio } from "expo-av";
-import { Accelerometer, Gyroscope } from "expo-sensors";
-import * as SecureStore from "expo-secure-store";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-import * as Network from "expo-network";
-import * as Haptics from "expo-haptics";
-import * as Clipboard from "expo-clipboard";
-import Constants from "expo-constants";
-import { JSX } from "react/jsx-runtime";
-import useThemeStore from "@/store/themeStore";
 import Layout from "@/components/layout/Layout";
 import { ThemedView } from "@/components/themed-view";
+import useThemeStore from "@/store/themeStore";
+import AsyncStorage from "@react-native-async-storage/async-storage";
+import * as Application from "expo-application";
+import { Audio } from "expo-av";
+import * as Battery from "expo-battery";
+import { Camera } from "expo-camera";
+import * as Clipboard from "expo-clipboard";
+import Constants from "expo-constants";
+import * as Device from "expo-device";
+import * as Haptics from "expo-haptics";
+import * as ImagePicker from "expo-image-picker";
+import * as Location from "expo-location";
+import * as Network from "expo-network";
+import * as Notifications from "expo-notifications";
+import * as SecureStore from "expo-secure-store";
+import { Accelerometer, Gyroscope } from "expo-sensors";
+import { JSX } from "react/jsx-runtime";
 
 // Types
 interface DeviceInfo {
@@ -1439,14 +1439,16 @@ const SystemInfoSection: React.FC<{ theme: typeof lightTheme }> = ({
 
   useEffect(() => {
     const loadSystemInfo = async () => {
+      const { width: screenWidth, height: screenHeight } =
+        Dimensions.get("screen");
       try {
         const info = {
           expoVersion: Constants.expoVersion,
           platform: Platform.OS,
           platformVersion: Platform.Version,
           isDevice: Device.isDevice,
-          screenWidth: screenWidth,
-          screenHeight: Dimensions.get("window").height,
+          screenWidth: screenWidth.toFixed(0),
+          screenHeight: screenHeight.toFixed(0),
         };
         setSystemInfo(info);
       } catch (error) {
