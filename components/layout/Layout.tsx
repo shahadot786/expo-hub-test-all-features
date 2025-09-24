@@ -4,6 +4,7 @@ import { SafeAreaView, SafeAreaProvider } from "react-native-safe-area-context";
 import { ThemedView } from "../themed-view";
 import { ThemedText } from "../themed-text";
 import { Ionicons } from "@expo/vector-icons"; // expo vector icons
+import useThemeStore from "@/store/themeStore";
 
 type Props = {
   children: React.ReactNode;
@@ -29,6 +30,7 @@ const Layout = ({
   alert,
   showBackButton = false,
 }: Props) => {
+  const { isDark } = useThemeStore();
   return (
     <ThemedView style={styles.themeContainer}>
       <SafeAreaProvider>
@@ -41,7 +43,11 @@ const Layout = ({
                 onPress={navigation.goBack}
                 style={styles.iconButton}
               >
-                <Ionicons name="arrow-back" size={24} color="black" />
+                <Ionicons
+                  name="arrow-back"
+                  size={24}
+                  color={isDark ? "white" : "black"}
+                />
               </TouchableOpacity>
             )}
 
@@ -63,7 +69,7 @@ const Layout = ({
                 <Ionicons
                   name="notifications-outline"
                   size={22}
-                  color="black"
+                  color={isDark ? "white" : "black"}
                 />
                 {notificationsCount > 0 && (
                   <ThemedView style={styles.badge}>
