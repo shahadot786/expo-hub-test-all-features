@@ -3,15 +3,15 @@ import { View, Text, StyleSheet } from "react-native";
 
 type Props = {};
 
-const Lab = (props: Props) => {
+const ExpoPermissions = (props: Props) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.text}>Lab</Text>
+      <Text style={styles.text}>Expo Permissions</Text>
     </View>
   );
 };
 
-export default Lab;
+export default ExpoPermissions;
 
 const styles = StyleSheet.create({
   container: {
